@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>SeeYouSoon ru.ivanov.transportation</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+  </head>
+
+  <body>
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+      <input type="submit" value="Logout"/>
+    </form>
+
+    <h1>Please select your shipments</h1>
+    <h2>Dear <span th:text="${user.username}">NAME</span>!</h2>
+
+    <img th:src="@{/images/logo.jpg}"/>
+
+    <form th:method="POST" th:object="${truck}" th:action="@{/fill}" id="truckForm">
+
+    <span class="validationError"
+          th:if="${#fields.hasErrors('cargos')}"
+          th:errors="*{cargos}">Cargo Error</span>
+
+    <div class="grid">
+      <div class="cargo-group" id="cars">
+      <h3>Pick your cars:</h3>
+      <div th:each="cargo : ${car}">
+        <input th:field="*{cargos}" type="checkbox"
+               th:value="${cargo.id}"/>
+        <span th:text="${cargo.name}">CARGO</span><br/>
+      </div>
+      </div>
+
+	  <div class="cargo-group" id="bikes">
+      <h3>Pick your bikes:</h3>
+      <div th:each="cargo : ${bike}">
+        <input th:field="*{cargos}" type="checkbox"
+               th:value="${cargo.id}"/>
+        <span th:text="${cargo.name}">CARGO</span><br/>
+      </div>
+      </div>
+
+	  <div class="cargo-group" id="things">
+      <h3>Pick your things:</h3>
+      <div th:each="cargo : ${thing}">
+        <input th:field="*{cargos}" type="checkbox"
+               th:value="${cargo.id}"/>
+        <span th:text="${cargo.name}">CARGO</span><br/>
+      </div>
+      </div>
+
+	  <div class="cargo-group" id="furniture">
+      <h3>Pick your furnitures:</h3>
+      <div th:each="cargo : ${furniture}">
+        <input th:field="*{cargos}" type="checkbox"
+               th:value="${cargo.id}"/>
+        <span th:text="${cargo.name}">CARGO</span><br/>
+      </div>
+      </div>
+
+	  <div class="cargo-group" id="scraps">
+      <h3>Select your scrap:</h3>
+      <div th:each="cargo : ${scrap}">
+        <input th:field="*{cargos}" type="checkbox"
+               th:value="${cargo.id}"/>
+        <span th:text="${cargo.name}">CARGO</span><br/>
+      </div>
+      </div>
+      </div>
+
+      <div>
+
+      <h3>Truck ID:</h3>
+      <input type="text" th:field="*{name}"/>
+      <span class="validationError"
+            th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}">Name Error</span>
+      <br/>
+
+      <button>Order a truck</button>
+      </div>
+    </form>
+  </body>
+</html>

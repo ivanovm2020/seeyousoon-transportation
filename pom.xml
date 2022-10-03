@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 
 	<name>truck-cloud</name>
-	<description>SeeYouSoon ru.ivanov.transportation</description>
+	<description>SeeYouSoon transportation</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

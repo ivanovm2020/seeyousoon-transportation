@@ -6,22 +6,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.ivanov.transportation.domain.Cargo;
-import ru.ivanov.transportation.repos.CargoRepository;
+import ru.ivanov.transportation.repos.CargoRestRepository;
 
 import java.util.List;
 
 @RestController
 public class CargoRestController {
-    private final CargoRepository cargoRepo;;
+    private final CargoRestRepository cargoRestRepo;
 
     @Autowired
-    public CargoRestController(CargoRepository cargoRepo) {
-        this.cargoRepo = cargoRepo;
+    public CargoRestController(CargoRestRepository cargoRestRepo) {
+        this.cargoRestRepo = cargoRestRepo;
     }
 
     @RequestMapping(value = "/api/cargos", method = RequestMethod.GET)
     @ResponseBody
-    public List<Cargo> findAllCargo() {
-        return (List<Cargo>) cargoRepo.findAll();
+    public List<Cargo> findAll() {
+        return cargoRestRepo.findAll();
     }
 }
